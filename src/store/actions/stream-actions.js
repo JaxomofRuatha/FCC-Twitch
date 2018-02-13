@@ -2,28 +2,28 @@ import types from './constants';
 
 // API actions for Saga and querying Twitch.
 
-export function requestChannels(query) {
+export function requestStreams(query) {
   return {
-    type: types.REQUEST_CHANNELS,
+    type: types.REQUEST_STREAMS,
     query
   };
 }
 
-export function receiveChannels(res) {
+export function receiveStreams(res) {
   return {
-    type: types.RECEIVE_CHANNELS,
+    type: types.RECEIVE_STREAMS,
     res
   };
 }
 
-export function errorChannels(err) {
+export function errorStreams(err) {
   return {
-    type: types.ERROR_CHANNELS,
+    type: types.ERROR_STREAMS,
     err
   };
 }
 
-// Filtering actions for display of channels.
+// Filtering actions for display of streams.
 
 export function showAll(payload) {
   return {
@@ -46,18 +46,18 @@ export function showOffline(payload) {
   };
 }
 
-// Adding and removing channels from unfiltered list.
+// Adding and removing streams from unfiltered list.
 
 export function removeChannel(payload) {
   return {
-    type: types.REMOVE_CHANNEL,
+    type: types.REMOVE_STREAM,
     payload
   };
 }
 
-export function addChannel(payload) {
+export function addStream(payload) {
   return {
-    type: types.ADD_CHANNEL,
+    type: types.ADD_STREAM,
     payload
   };
 }
