@@ -21,7 +21,7 @@ const StreamSearch = ({ className, submitting, handleSubmit }) => (
         type="submit"
         disabled={submitting}
       >
-        <FontAwesome icon={faSearch} size="md" />
+        <FontAwesome icon={faSearch} size="1x" />
       </button>
     </form>
   </article>

@@ -17,5 +17,26 @@ export default async function fetchStreams(query) {
   const streamResults = await apiSkeleton(streamUrl, apiOpts);
   const userResults = await apiSkeleton(userUrl, apiOpts);
 
-  return fromJS([streamResults, userResults]);
+  const liveInfo = streamResults.data.reduce((acc, cur) => {
+    acc[cur.user_id] = { title: cur.title, viewers: cur.viewer_count };
+    return acc;
+  }, {});
+
+  const comboResults = userResults.data.map((user) => {
+    const final = {
+      name: user.display_name,
+      avatar: user.profile_image_url,
+      description: user.description,
+      live: false
+    };
+
+    if (liveInfo[user.id]) {
+      final.title = liveInfo[user.id].title;
+      final.live = true;
+      final.viewers = liveInfo[user.id].viewers;
+    }
+    return final;
+  });
+
+  return fromJS([streamResults, userResults, comboResults]);
 }

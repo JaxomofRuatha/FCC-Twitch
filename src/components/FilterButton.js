@@ -20,6 +20,16 @@ const ButtonStyled = styled(FilterButton)`
   border: none;
   padding: 0.3rem 0.5rem;
   text-align: left;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: aqua;
+  }
 `;
 
 export default ButtonStyled;
