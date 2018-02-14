@@ -4,19 +4,20 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import StreamSearch from './components/StreamSearch';
-// import StreamFilter from './components/StreamFilter';
+import StreamFilter from './components/StreamFilter';
 
 import { requestStreams } from './store/actions/stream-actions';
 
 const App = props => (
-  <div className="app-root">
+  <main className="app-root">
     <StreamSearch />
-  </div>
+    <StreamFilter />
+  </main>
 );
 
 // Adds state as a prop to avoid having components directly reference store.
 const mapStateToProps = state => ({
-  users: ['jaxomofruatha', 'freecodecamp']
+  twitchUsers: state.getIn(['streamReducer', 'twitchUsers'])
 });
 
 // Adds action creators as props to avoid having components directly reference store.
@@ -24,15 +25,12 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ requestStreams }, dispatch);
 
 const enhance = compose(
+  connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
-    componentWillMount() {
-      document.body.style.background = 'orangered';
-    },
     componentDidMount() {
-      requestStreams();
+      this.props.requestStreams(this.props.twitchUsers);
     }
-  }),
-  connect(mapStateToProps, mapDispatchToProps)
+  })
 );
 
 export default enhance(App);

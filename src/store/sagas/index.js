@@ -5,10 +5,10 @@ import types from '../actions/constants';
 import fetchStreams from '../data';
 import { receiveStreams, errorStreams } from '../actions/stream-actions';
 
-function* streamsWorker() {
+function* streamsWorker({ query }) {
   try {
     yield call(delay, 100);
-    const res = yield call(fetchStreams);
+    const res = yield call(fetchStreams, query);
     yield put(receiveStreams(res));
   } catch (err) {
     yield put(errorStreams(err));
