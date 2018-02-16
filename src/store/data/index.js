@@ -24,6 +24,8 @@ export default async function fetchStreams(query) {
 
   const comboResults = userResults.data.map((user) => {
     const final = {
+      id: user.id,
+      login: user.login,
       name: user.display_name,
       avatar: user.profile_image_url,
       description: user.description,
@@ -38,5 +40,5 @@ export default async function fetchStreams(query) {
     return final;
   });
 
-  return fromJS([streamResults, userResults, comboResults]);
+  return fromJS([comboResults]);
 }

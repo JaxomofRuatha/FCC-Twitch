@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'react-emotion';
 
-const SingleStream = ({ className }) => (
-  <a href="#" className={`single-stream ${className}`}>
+const SingleStream = props => (
+  <a
+    href={`https://www.twitch.tv/${props.login}`}
+    className={`single-stream ${props.className}`}
+  >
     <div className="single-stream__thumb">
-      <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/3b55516f35883876-profile_image-70x70.jpeg" />
-      <span>Viewers</span>
+      <img src={props.avatar} />
+      <span>{props.viewers}</span>
     </div>
     <div className="single-stream__info">
-      <h1>JaxomofRuatha</h1>
-      <span>
-        Aspiring software developer and occasional gamer, working to help others
-        through their lifelong journeys!
-      </span>
+      <h1>{props.name}</h1>
+      <span>{props.title ? props.title : props.description}</span>
     </div>
     <button className="single-stream__toggle">+</button>
   </a>
@@ -34,6 +34,10 @@ const StreamStyled = styled(SingleStream)`
   span {
     display: block;
     font-size: 0.7rem;
+  }
+  single-stream__toggle {
+    background: inherit;
+    color: lightpurple;
   }
 `;
 

@@ -7,17 +7,19 @@ import StreamSearch from './components/StreamSearch';
 import StreamFilter from './components/StreamFilter';
 
 import { requestStreams } from './store/actions/stream-actions';
+import { getStreams, getLogins } from './store/selectors';
 
-const App = props => (
+const App = ({ twitchUsers, streams }) => (
   <main className="app-root">
     <StreamSearch />
-    <StreamFilter />
+    <StreamFilter streams={streams} />
   </main>
 );
 
 // Adds state as a prop to avoid having components directly reference store.
-const mapStateToProps = state => ({
-  twitchUsers: state.getIn(['streamReducer', 'twitchUsers'])
+const mapStateToProps = (state, ownProps) => ({
+  twitchUsers: getLogins(state, ownProps),
+  streams: getStreams(state, ownProps)
 });
 
 // Adds action creators as props to avoid having components directly reference store.

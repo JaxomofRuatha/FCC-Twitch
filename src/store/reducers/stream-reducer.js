@@ -3,7 +3,6 @@ import { fromJS } from 'immutable';
 import types from '../actions/constants';
 
 const initialState = fromJS({
-  streams: {},
   twitchUsers: ['jaxomofruatha', 'freecodecamp', 'twitchplayspokemon'],
   fetching: false
 });

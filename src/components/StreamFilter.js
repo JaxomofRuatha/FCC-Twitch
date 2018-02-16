@@ -4,14 +4,29 @@ import styled from 'react-emotion';
 import FilterButton from './FilterButton';
 import SingleStream from './SingleStream';
 
-const StreamFilter = ({ className }) => (
+const StreamFilter = ({ className, streams }) => (
   <article className={`stream-filter ${className}`}>
     <div className="stream-filter__filters">
       <FilterButton filter="all" />
       <FilterButton filter="live" />
       <FilterButton filter="offline" />
     </div>
-    <SingleStream />
+    {streams &&
+      streams.map((stream) => {
+        console.log(stream);
+        return (
+          <SingleStream
+            key={stream.get('id')}
+            login={stream.get('login')}
+            name={stream.get('name')}
+            avatar={stream.get('avatar')}
+            description={stream.get('description')}
+            live={stream.get('live')}
+            title={stream.get('title')}
+            viewers={stream.get('viewers')}
+          />
+        );
+      })}
   </article>
 );
 
