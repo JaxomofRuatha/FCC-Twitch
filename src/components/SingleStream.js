@@ -8,7 +8,7 @@ const SingleStream = props => (
   >
     <div className="single-stream__thumb">
       <img src={props.avatar} />
-      <span>{props.viewers}</span>
+      <span>{props.viewers || 'Offline'}</span>
     </div>
     <div className="single-stream__info">
       <h1>{props.name}</h1>
@@ -19,14 +19,31 @@ const SingleStream = props => (
 );
 
 const StreamStyled = styled(SingleStream)`
-  color: #fff;
+  color: #faf9fa;
   text-decoration: none;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin: 0.5rem 0;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
+  flex: 1;
+  &:hover {
+    background: #2c2541;
+  }
+  .single-stream__thumb {
+    flex: 2;
+    text-align: center;
+    span {
+      color: red;
+    }
+  }
+  img {
+    max-width: 100%;
+  }
   .single-stream__info {
     padding: 0 0.5rem;
+    flex: 5;
+    align-self: flex-start;
   }
   h1 {
     font-size: 0.9rem;
@@ -35,9 +52,10 @@ const StreamStyled = styled(SingleStream)`
     display: block;
     font-size: 0.7rem;
   }
-  single-stream__toggle {
+  .single-stream__toggle {
+    border: none;
     background: inherit;
-    color: lightpurple;
+    color: aqua;
   }
 `;
 

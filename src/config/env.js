@@ -1,7 +1,11 @@
 import dev from './dev';
 
+let env;
+
 if (process.env.NODE_ENV === 'production') {
-  module.exports = process.env.SECRET;
+  env = process.env.SECRET;
 } else {
-  module.exports = dev;
+  env = dev;
 }
+
+export default env;

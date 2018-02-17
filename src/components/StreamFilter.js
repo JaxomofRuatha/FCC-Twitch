@@ -12,9 +12,9 @@ const StreamFilter = ({ className, streams }) => (
       <FilterButton filter="offline" />
     </div>
     {streams &&
-      streams.map((stream) => {
-        console.log(stream);
-        return (
+      streams
+        .first()
+        .map(stream => (
           <SingleStream
             key={stream.get('id')}
             login={stream.get('login')}
@@ -25,14 +25,15 @@ const StreamFilter = ({ className, streams }) => (
             title={stream.get('title')}
             viewers={stream.get('viewers')}
           />
-        );
-      })}
+        ))}
   </article>
 );
 
 const FilterStyled = styled(StreamFilter)`
   color: #6441a4;
   margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
 
   .stream-filter__filters {
     display: flex;

@@ -30,7 +30,7 @@ const StreamSearch = ({ className, submitting, handleSubmit }) => (
 const SearchStyled = styled(StreamSearch)`
   .stream-search__title {
     color: #6441a4;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     font-weight: 100;
     text-align: center;
   }

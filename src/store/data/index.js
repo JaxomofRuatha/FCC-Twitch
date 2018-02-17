@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 import apiSkeleton from '../../utils/api-helpers';
-import env from '../../config/dev';
+import env from '../../config/env';
 
 const apiOpts = {
   method: 'GET',
