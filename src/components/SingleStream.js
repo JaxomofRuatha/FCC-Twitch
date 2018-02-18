@@ -7,7 +7,7 @@ const SingleStream = props => (
     className={`single-stream ${props.className}`}
   >
     <div className="single-stream__thumb">
-      <img src={props.avatar} />
+      <img src={props.avatar} alt={`Avatar for ${props.name}`} />
       <span>{props.viewers || 'Offline'}</span>
     </div>
     <div className="single-stream__info">

@@ -25,24 +25,21 @@ export function errorStreams(err) {
 
 // Filtering actions for display of streams.
 
-export function showAll(payload) {
+export function showAll() {
   return {
-    type: types.SHOW_ALL,
-    payload
+    type: types.SHOW_ALL
   };
 }
 
-export function showOnline(payload) {
+export function showOnline() {
   return {
-    type: types.SHOW_ONLINE,
-    payload
+    type: types.SHOW_ONLINE
   };
 }
 
-export function showOffline(payload) {
+export function showOffline() {
   return {
-    type: types.SHOW_OFFLINE,
-    payload
+    type: types.SHOW_OFFLINE
   };
 }
 

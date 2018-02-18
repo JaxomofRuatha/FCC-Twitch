@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import types from '../actions/constants';
 
 const initialState = fromJS({
-  twitchUsers: ['jaxomofruatha', 'freecodecamp', 'twitchplayspokemon'],
+  twitchUsers: ['jaxomofruatha', 'freecodecamp', 'dyrus', 'twitchplayspokemon'],
   fetching: false,
   displayStatus: types.SHOW_ALL
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import StreamSearch from './components/StreamSearch';
 import StreamFilter from './components/StreamFilter';
@@ -25,6 +26,12 @@ const App = props => (
     />
   </main>
 );
+
+App.propTypes = {
+  showAll: PropTypes.func.isRequired,
+  showOffline: PropTypes.func.isRequired,
+  showOnline: PropTypes.func.isRequired
+};
 
 // Adds state as a prop to avoid having components directly reference store.
 const mapStateToProps = (state, ownProps) => ({
