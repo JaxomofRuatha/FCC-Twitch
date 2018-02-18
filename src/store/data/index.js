@@ -40,5 +40,5 @@ export default async function fetchStreams(query) {
     return final;
   });
 
-  return fromJS([comboResults]);
+  return fromJS(comboResults);
 }

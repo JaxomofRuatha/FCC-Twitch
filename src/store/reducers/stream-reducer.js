@@ -4,7 +4,8 @@ import types from '../actions/constants';
 
 const initialState = fromJS({
   twitchUsers: ['jaxomofruatha', 'freecodecamp', 'twitchplayspokemon'],
-  fetching: false
+  fetching: false,
+  displayStatus: types.SHOW_ALL
 });
 
 const streamReducer = (state = initialState, action) => {
@@ -19,6 +20,21 @@ const streamReducer = (state = initialState, action) => {
         store.set('fetching', false);
         store.set('streams', data);
       });
+    }
+    case types.SHOW_ALL: {
+      return state.get('displayStatus') === types.SHOW_ALL
+        ? state
+        : state.set('displayStatus', types.SHOW_ALL);
+    }
+    case types.SHOW_ONLINE: {
+      return state.get('displayStatus') === types.SHOW_ONLINE
+        ? state
+        : state.set('displayStatus', types.SHOW_ONLINE);
+    }
+    case types.SHOW_OFFLINE: {
+      return state.get('displayStatus') === types.SHOW_OFFLINE
+        ? state
+        : state.set('displayStatus', types.SHOW_OFFLINE);
     }
     default:
       return state;

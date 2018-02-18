@@ -1,8 +1,12 @@
-import { createSelectorCreator, defaultMemoize } from 'reselect';
+import { createSelector } from 'reselect';
 import { formValueSelector } from 'redux-form/immutable';
 import { is } from 'immutable';
 
-export const getStreams = (state, props) => {
+import types from '../actions/constants';
+
+const getDisplayStatus = state => state.get('displayStatus');
+
+const getStreams = (state, props) => {
   const streams = state.getIn(['streamReducer', 'streams']);
   return streams === undefined ? null : streams;
 };
@@ -10,4 +14,22 @@ export const getStreams = (state, props) => {
 export const getLogins = (state, props) =>
   state.getIn(['streamReducer', 'twitchUsers']);
 
-// const createImmutableSelector = createSelectorCreator(defaultMemoize, is);
+export const getFilteredStreams = createSelector(
+  [getStreams, getDisplayStatus],
+  (streams, displayStatus) => {
+    if (streams) {
+      switch (displayStatus) {
+        case types.SHOW_ALL:
+          return streams;
+        case types.SHOW_ONLINE:
+          return streams.filter(stream => stream.get('live') === true);
+        case types.SHOW_OFFLINE:
+          return streams.filter(stream => stream.get('live') === false);
+        default:
+          return streams;
+      }
+    } else {
+      return streams;
+    }
+  }
+);

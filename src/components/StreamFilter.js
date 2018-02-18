@@ -4,28 +4,32 @@ import styled from 'react-emotion';
 import FilterButton from './FilterButton';
 import SingleStream from './SingleStream';
 
-const StreamFilter = ({ className, streams }) => (
+const StreamFilter = ({
+  className,
+  streams,
+  showAll,
+  showOffline,
+  showOnline
+}) => (
   <article className={`stream-filter ${className}`}>
     <div className="stream-filter__filters">
-      <FilterButton filter="all" />
-      <FilterButton filter="live" />
-      <FilterButton filter="offline" />
+      <FilterButton filter="all" handleClick={showAll} />
+      <FilterButton filter="live" handleClick={showOnline} />
+      <FilterButton filter="offline" handleClick={showOffline} />
     </div>
     {streams &&
-      streams
-        .first()
-        .map(stream => (
-          <SingleStream
-            key={stream.get('id')}
-            login={stream.get('login')}
-            name={stream.get('name')}
-            avatar={stream.get('avatar')}
-            description={stream.get('description')}
-            live={stream.get('live')}
-            title={stream.get('title')}
-            viewers={stream.get('viewers')}
-          />
-        ))}
+      streams.map(stream => (
+        <SingleStream
+          key={stream.get('id')}
+          login={stream.get('login')}
+          name={stream.get('name')}
+          avatar={stream.get('avatar')}
+          description={stream.get('description')}
+          live={stream.get('live')}
+          title={stream.get('title')}
+          viewers={stream.get('viewers')}
+        />
+      ))}
   </article>
 );
 

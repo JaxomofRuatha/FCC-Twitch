@@ -6,25 +6,43 @@ import { connect } from 'react-redux';
 import StreamSearch from './components/StreamSearch';
 import StreamFilter from './components/StreamFilter';
 
-import { requestStreams } from './store/actions/stream-actions';
-import { getStreams, getLogins } from './store/selectors';
+import {
+  requestStreams,
+  showAll,
+  showOnline,
+  showOffline
+} from './store/actions/stream-actions';
+import { getFilteredStreams, getLogins } from './store/selectors';
 
-const App = ({ twitchUsers, streams }) => (
+const App = props => (
   <main className="app-root">
     <StreamSearch />
-    <StreamFilter streams={streams} />
+    <StreamFilter
+      streams={props.streams}
+      showAll={props.showAll}
+      showOffline={props.showOffline}
+      showOnline={props.showOnline}
+    />
   </main>
 );
 
 // Adds state as a prop to avoid having components directly reference store.
 const mapStateToProps = (state, ownProps) => ({
   twitchUsers: getLogins(state, ownProps),
-  streams: getStreams(state, ownProps)
+  streams: getFilteredStreams(state, ownProps)
 });
 
 // Adds action creators as props to avoid having components directly reference store.
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ requestStreams }, dispatch);
+  bindActionCreators(
+    {
+      requestStreams,
+      showAll,
+      showOffline,
+      showOnline
+    },
+    dispatch
+  );
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),

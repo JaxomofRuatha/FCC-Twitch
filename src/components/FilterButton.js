@@ -1,14 +1,26 @@
 import React from 'react';
 import styled from 'react-emotion';
 
-const FilterButton = ({ filter, className }) => {
+const FilterButton = ({ filter, className, handleClick }) => {
   switch (filter) {
     case 'all':
-      return <button className={className}>All</button>;
+      return (
+        <button className={className} onClick={handleClick}>
+          All
+        </button>
+      );
     case 'live':
-      return <button className={className}>Live</button>;
+      return (
+        <button className={className} onClick={handleClick}>
+          Live
+        </button>
+      );
     case 'offline':
-      return <button className={className}>Offline</button>;
+      return (
+        <button className={className} onClick={handleClick}>
+          Offline
+        </button>
+      );
     default:
       return null;
   }
