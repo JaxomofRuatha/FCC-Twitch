@@ -22,7 +22,6 @@
     "no-var": [1],
     "no-undef": [2],
     "no-param-reassign": [1],
-    "prefer-template": [0],
     "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
     "react/jsx-filename-extension": [
       1,
